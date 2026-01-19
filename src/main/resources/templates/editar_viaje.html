@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
+          rel="stylesheet" 
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
+          crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Editar Viaje</title>
+</head>
+<body>
+
+<div class="container">  
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8 col-sm-10 card mt-5">
+            <h1 class="text-center mt-3">Edición de Viaje</h1>
+            <div class="card-body">
+                <form th:action="@{/viajes/{id}(id=${viaje.id})}" th:object="${viaje}" method="POST">
+
+                    <div class="form-group mb-3">
+                        <label>Chofer:</label>
+                        <select name="chofer.id" th:field="*{chofer.id}" class="form-control" required>
+                            <option value="" disabled>Seleccione un chofer</option>
+                            <option th:each="chofer : ${choferes}" 
+                                    th:value="${chofer.id}" 
+                                    th:text="${chofer.nombreApellido}" 
+                                    th:selected="${chofer.id} == ${viaje.chofer.id}">
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label>Cliente:</label>
+                        <select name="cliente.id" th:field="*{cliente.id}" class="form-control" required>
+                            <option value="" disabled>Seleccione un cliente</option>
+                            <option th:each="cliente : ${clientes}" 
+                                    th:value="${cliente.id}" 
+                                    th:text="${cliente.nombreApellido}" 
+                                    th:selected="${cliente.id} == ${viaje.cliente.id}">
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label>Localidad:</label>
+                        <select name="localidad.id" th:field="*{localidad.id}" class="form-control">
+                            <option value="" disabled>Seleccione una localidad</option>
+                            <option th:each="loc : ${localidades}" 
+                                    th:value="${loc.id}" 
+                                    th:text="${loc.localidad}" 
+                                    th:selected="${loc.id} == ${viaje.localidad.id}">
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label>Fecha y Hora:</label>
+                        <input type="datetime-local" name="fechaHora" th:field="*{fechaHora}" class="form-control" required />
+                    </div>
+
+                    <br>
+                    <div class="text-center mb-2">
+                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                    </div>
+                    <div class="text-center">
+                        <a th:href="@{/viajes}" class="btn btn-secondary">Volver a Viajes</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

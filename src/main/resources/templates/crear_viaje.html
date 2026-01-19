@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Declarar Viaje</title>
+</head>
+<body>
+<div class="container">
+    <h1>Declarar Viaje</h1>
+    <form th:action="@{/viajes}" th:object="${viaje}" method="post">
+
+        <div class="mb-3">
+            <label for="chofer">Chofer:</label>
+            <select id="chofer" class="form-control" th:field="*{chofer.id}" required>
+                <option value="" disabled selected>Seleccione un chofer</option>
+                <option th:each="chofer : ${choferes}" th:value="${chofer.id}" th:text="${chofer.nombreApellido}"></option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="cliente">Cliente:</label>
+            <select id="cliente" class="form-control" th:field="*{cliente.id}" required>
+                <option value="" disabled selected>Seleccione un cliente</option>
+                <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nombreApellido}"></option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="localidad">Localidad:</label>
+            <select id="localidad" class="form-control" th:field="*{localidad.id}">
+                <option value="" disabled selected>Seleccione una localidad</option>
+                <option th:each="loc : ${localidades}" th:value="${loc.id}" th:text="${loc.localidad}"></option>
+            </select>
+        </div>
+       
+        <div class="mb-3">
+            <label for="fechaHora">Fecha y Hora:</label>
+            <input id="fechaHora" class="form-control" type="datetime-local" th:field="*{fechaHora}" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar Viaje</button>
+        <a th:href="@{/viajes}" class="btn btn-secondary">Volver a Viajes</a>
+    </form>
+</div>
+</body>
+</html>
+

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Agencia de Transporte</title>
+</head>
+<body>
+    <h1>Menú Principal</h1>
+    
+    <div>
+        <h2>Choferes</h2>
+        <a th:href="@{/choferes}">Listar Choferes</a>
+        <a th:href="@{/choferes/nuevo}">Nuevo Chofer</a>
+    </div>
+    
+    <div>
+        <h2>Clientes</h2>
+        <a th:href="@{/clientes}">Listar Clientes</a>
+        <a th:href="@{/clientes/nuevo}">Nuevo Cliente</a>
+    </div>
+    
+    <div>
+        <h2>Localidades</h2>
+        <a th:href="@{/localidades}">Listar Localidades</a>
+        <a th:href="@{/localidades/nuevo}">Nueva Localidad</a>
+    </div>
+    
+    <div>
+        <h2>Viajes</h2>
+        <a th:href="@{/viajes}">Listar Viajes</a>
+        <a th:href="@{/viajes/nuevo}">Nuevo Viaje</a>
+    </div>
+</body>
+</html>
